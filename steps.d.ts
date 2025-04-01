@@ -5,7 +5,7 @@ type jellyfinPage = typeof import('./pages/jellyfin');
 
 declare namespace CodeceptJS {
   interface SupportObject { I: I, current: any, casaosPage: casaosPage, jellyfinPage: jellyfinPage }
-  interface Methods extends Playwright {}
+  interface Methods extends Playwright, REST {}
   interface I extends ReturnType<steps_file> {}
   namespace Translation {
     interface Actions {}

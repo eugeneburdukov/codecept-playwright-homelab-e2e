@@ -21,6 +21,24 @@ export const config: CodeceptJS.MainConfig = {
       waitForTimeout: 20000,
       windowSize: '1280x720',
       waitForNavigation: 'load'
+    },
+    REST: {
+      endpoint: 'http://192.168.1.231:8097',
+      defaultHeaders: {
+        'Content-Type': 'application/json',
+        'Accept': 'application/json'
+      }
+    }
+  },
+  mocha: {
+    reporter: 'mochawesome',
+    reporterOptions: {
+      reportDir: 'output',
+      reportFilename: 'mochawesome-report',
+      reportTitle: 'CodeceptJS Test Report',
+      inlineAssets: true,
+      quiet: false, // Ensure logs are captured
+      consoleReporter: 'none' // Try removing or setting to 'spec' for more logs
     }
   },
   include: {
