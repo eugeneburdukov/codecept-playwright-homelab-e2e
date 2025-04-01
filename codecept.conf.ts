@@ -10,12 +10,12 @@ setHeadlessWhen(process.env.HEADLESS);
 setCommonPlugins();
 
 export const config: CodeceptJS.MainConfig = {
-  tests: './*_test.ts',
+  tests: './tests/*_test.ts',
   output: './output',
   helpers: {
     Playwright: {
       browser: 'chromium',
-      url: 'http://localhost',
+      url: 'http://192.168.1.231:32769',
       show: true,
       timeout: 20000,
       waitForTimeout: 20000,
