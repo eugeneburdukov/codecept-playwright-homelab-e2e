@@ -1,4 +1,5 @@
 const { I } = inject();
+const addContext = require('mochawesome/addContext'); 
 
 class casaosPage {
   usernameField = '//input[@type="text"]';
@@ -28,7 +29,6 @@ class casaosPage {
     //I.waitForElement('//input[@id="txtManualName"]', 5);
     I.seeInTitle('Jellyfin');
   }
-
 }
 
 // For inheritance

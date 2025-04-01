@@ -1,6 +1,10 @@
 const { I } = inject();
 
+import axios from "axios";
+import { environment, JellyfinLibraryParser } from "../config/basicConfig";
+
 class jellyfinPage {
+
   userNameField = '//input[@id="txtManualName"]';
   passwordField = '//input[@id="txtManualPassword"]';
   loginButton = '//button[@type="submit"]';
@@ -29,6 +33,34 @@ class jellyfinPage {
     I.click(this.moviesLibrarySection);
     I.click(this.moviesLibraryScan);
     I.click(this.refreshButton);
+  }
+
+  async getCountOfMovies() {
+    try {
+      const responseMovies = await axios.get(`${environment.JELLYFIN.API_URL}/Users/a730a58b3043499d8e70dd9fa01bc106/Items`, {
+        headers: { "X-Emby-Token": environment.JELLYFIN.API_KEY },
+        params: { IncludeItemTypes: "Movie", Recursive: true }
+      });
+      console.log(`Total Movies: ${responseMovies.data.Items.length}`);
+    } catch (error) {
+      console.error("Error:", error.response ? error.response.data : error.message);
+    }
+  }
+
+  async getListOfLibraries() {
+    try {
+      const axiosResponse = await axios.get(`${environment.JELLYFIN.API_URL}/Library/VirtualFolders`, {
+        headers: {
+          'X-Emby-Token': environment.JELLYFIN.API_KEY,
+          'Accept': 'application/json'
+        }
+      });
+
+      const filteredData = JellyfinLibraryParser.extractNamesAndLocations(axiosResponse.data);
+      console.log(filteredData);
+    } catch (error) {
+      console.error("Error:", error.response ? error.response.data : error.message);
+    }
   }
 
 }
