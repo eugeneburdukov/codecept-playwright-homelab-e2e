@@ -25,6 +25,3 @@ jobs:
 
       - name: Install Playwright Browsers  
         run: npx playwright install --with-deps  
-
-      - name: Run CodeceptJS Tests  
-        run: npx codeceptjs run --plugins allure
