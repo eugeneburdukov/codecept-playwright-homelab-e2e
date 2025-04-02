@@ -29,8 +29,13 @@ jobs:
       - name: Run CodeceptJS Tests  
         run: npx codeceptjs run --plugins allure
 
+      - name: Debug Test Results
+        run: |
+          echo "Checking for mochawesome files"
+          ls -alh output/
+
       - name: Upload Mochawesome Report
         uses: actions/upload-artifact@v4
         with:
           name: mochawesome-report
-          path: output/mochawesome-report.html
+          path: output/
