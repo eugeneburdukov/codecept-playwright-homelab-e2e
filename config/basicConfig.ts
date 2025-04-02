@@ -1,14 +1,16 @@
 const apiKey = process.env.API_KEY;
 const apiUrl = process.env.API_URL;
 const apiCasaOSPage = process.env.CASAOSPAGE;
+const username = process.env.username;
+const password = process.env.password;
 
 export const environment = {
     LAN: {
         casaOSpage: apiKey
     },
     CREDENTIALS: {
-        username: "eugeneb",
-        password: "drandulet"
+        username: username,
+        password: password
     },
     JELLYFIN: {
         API_URL: apiUrl,
