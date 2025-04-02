@@ -1,4 +1,6 @@
 name: CodeceptJS Tests
+env:
+    HEADLESS: true
 
 on:  
   push:  
