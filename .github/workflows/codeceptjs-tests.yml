@@ -1,6 +1,6 @@
 name: CodeceptJS Tests
 env:
-    HEADLESS: true
+  HEADLESS: true
 
 on:  
   push:  
@@ -25,3 +25,12 @@ jobs:
 
       - name: Install Playwright Browsers  
         run: npx playwright install --with-deps  
+
+      - name: Run CodeceptJS Tests  
+        run: npx codeceptjs run --plugins allure
+
+      - name: Upload Mochawesome Report
+        uses: actions/upload-artifact@v4
+        with:
+          name: mochawesome-report
+          path: output/mochawesome-report.html
