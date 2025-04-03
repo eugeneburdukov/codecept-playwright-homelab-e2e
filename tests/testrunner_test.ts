@@ -5,11 +5,11 @@ import { AssertionError } from "assert";
 
 Feature('main');
 
-Before(({ I, casaosPage }) => {
-    console.log("🚀 Running");
-    I.amOnPage(environment.LAN.casaOSpage);
-    casaosPage.login(environment.CREDENTIALS.username, environment.CREDENTIALS.password);
-});
+// Before(({ I, casaosPage }) => {
+//     console.log("🚀 Running");
+//     I.amOnPage(environment.LAN.casaOSpage);
+//     casaosPage.login(environment.CREDENTIALS.username, environment.CREDENTIALS.password);
+// });
 
 Scenario('get Storage Info', ({ I, casaosPage }) => {
     casaosPage.getStorageInfo();
@@ -32,3 +32,8 @@ Scenario('API Jellyfin - Get List of Libraries', async ({ I, jellyfinPage }) => 
 Scenario('API Jellyfin - Get Count of Movies', async ({ I, jellyfinPage }) => {
     jellyfinPage.getCountOfMovies();
 }).tag("jellyfin_api_count_movies");
+
+Scenario('GitHub Pipeline test', ({ I }) => {
+    I.amOnPage("https://npshopping.com");
+    I.click("//div[@class='menu-link__text' and text() = 'Магазини']");
+}).tag("pipelinetest");
