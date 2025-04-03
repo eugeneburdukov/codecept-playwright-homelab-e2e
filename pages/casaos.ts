@@ -26,7 +26,7 @@ class casaosPage {
     I.waitForElement(this.jellyfinContainer, 10);
     I.click(this.jellyfinContainer);
     I.switchToNextTab();
-    //I.waitForElement('//input[@id="txtManualName"]', 5);
+    I.waitForElement('//input[@id="txtManualName"]', 5);
     I.seeInTitle('Jellyfin');
   }
 }

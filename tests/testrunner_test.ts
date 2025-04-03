@@ -5,11 +5,14 @@ import { AssertionError } from "assert";
 
 Feature('main');
 
-// Before(({ I, casaosPage }) => {
-//     console.log("🚀 Running");
-//     I.amOnPage(environment.LAN.casaOSpage);
-//     casaosPage.login(environment.CREDENTIALS.username, environment.CREDENTIALS.password);
-// });
+Before(({ I, casaosPage }) => {
+    console.log("🚀 Running");
+
+        I.amOnPage(environment.LAN.casaOSpage);
+        casaosPage.login(environment.CREDENTIALS.username, environment.CREDENTIALS.password); 
+
+
+});
 
 Scenario('get Storage Info', ({ I, casaosPage }) => {
     casaosPage.getStorageInfo();
