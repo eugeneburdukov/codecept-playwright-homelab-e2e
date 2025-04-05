@@ -13,7 +13,8 @@ class jellyfinPage {
   librariesSection = "//span[@class='MuiTypography-root MuiTypography-body1 MuiListItemText-primary css-hlxkyz' and text() = 'Libraries']";
   librariesSectionDescendent = "//span[text()='Libraries']/following::span[text()='Libraries' and not(ancestor::*[@style='display: none'])][1]";
   moviesLibrarySection = "//div[@data-id='f137a2dd21bbc1b99aa5c0f6bf02a805']//div[@style='text-align:right; float:right;padding-top:5px;']";
-  moviesLibraryScan = "//div[@class='listItemBodyText actionSheetItemText' and text() = 'Scan library']";
+  showsLibrarySection = "//div[@data-id='a656b907eb3a73532e40e44b968d0225']//div[@style='text-align:right; float:right;padding-top:5px;']";
+  LibraryScan = "//div[@class='listItemBodyText actionSheetItemText' and text() = 'Scan library']";
   refreshButton = "//button[@class='raised btnSubmit block formDialogFooterItem button-submit emby-button']";
 
   login(username, password) {
@@ -31,8 +32,16 @@ class jellyfinPage {
     I.click(this.librariesSection);
     I.click(this.librariesSectionDescendent);
     I.click(this.moviesLibrarySection);
-    I.click(this.moviesLibraryScan);
-    I.click(this.refreshButton);
+    // I.click(this.LibraryScan);
+    // I.click(this.refreshButton);
+  }
+
+  refreshSeriesLibrary() {
+    I.click(this.librariesSection);
+    I.click(this.librariesSectionDescendent);
+    I.click(this.showsLibrarySection);
+    // I.click(this.LibraryScan);
+    // I.click(this.refreshButton);
   }
 
   async getCountOfMovies() {
