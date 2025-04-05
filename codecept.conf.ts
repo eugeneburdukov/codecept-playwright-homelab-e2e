@@ -45,6 +45,8 @@ export const config: CodeceptJS.MainConfig = {
     I: './steps_file',
     casaosPage: "./pages/casaos.ts",
     jellyfinPage: "./pages/jellyfin.ts",
+
+    qbittorrentPage: "./pages/qbittorrent.ts",
   },
   name: 'autoN100'
 }

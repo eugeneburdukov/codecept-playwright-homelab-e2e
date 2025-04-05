@@ -7,12 +7,19 @@ Feature('main');
 
 Before(({ I, casaosPage }) => {
     console.log("🚀 Running");
-
         I.amOnPage(environment.LAN.casaOSpage);
         casaosPage.login(environment.CREDENTIALS.username, environment.CREDENTIALS.password); 
-
-
 });
+
+Scenario('get Downloading list', async  ({ I, casaosPage, qbittorrentPage }) => {
+    casaosPage.goToQbittorrentContainer();
+    qbittorrentPage.login(environment.CREDENTIALS.username, environment.CREDENTIALS.password);
+    await qbittorrentPage.getQElements();
+}).tag('qbittorrent');
+
+Scenario('get Temperature Info', ({ I, casaosPage }) => {
+    casaosPage.getTemperature();
+}).tag('getTemperature');
 
 Scenario('get Storage Info', ({ I, casaosPage }) => {
     casaosPage.getStorageInfo();
@@ -23,9 +30,18 @@ Scenario('Refresh Movie Library', ({ I, casaosPage, jellyfinPage }) => {
 
     jellyfinPage.login(environment.CREDENTIALS.username, environment.CREDENTIALS.password);
     jellyfinPage.goToDashboard();
-    //jellyfinPage.refreshMoviesLibrary();
-    console.log("Jellyfin Media is refreshed");
-}).tag('casaosAndJellyfin_updateLibrary');
+    jellyfinPage.refreshMoviesLibrary();
+    console.log("Jellyfin Movies is refreshed");
+}).tag('JupdateMovieLibrary');
+
+Scenario('Refresh Series Library', ({ I, casaosPage, jellyfinPage }) => {
+    casaosPage.goToJellyfinContainer();
+
+    jellyfinPage.login(environment.CREDENTIALS.username, environment.CREDENTIALS.password);
+    jellyfinPage.goToDashboard();
+    jellyfinPage.refreshSeriesLibrary();
+    console.log("Jellyfin Series is refreshed");
+}).tag('JupdateSeriesLibrary');
 
 
 Scenario('API Jellyfin - Get List of Libraries', async ({ I, jellyfinPage }) => {
@@ -35,8 +51,3 @@ Scenario('API Jellyfin - Get List of Libraries', async ({ I, jellyfinPage }) => 
 Scenario('API Jellyfin - Get Count of Movies', async ({ I, jellyfinPage }) => {
     jellyfinPage.getCountOfMovies();
 }).tag("jellyfin_api_count_movies");
-
-Scenario('GitHub Pipeline test', ({ I }) => {
-    I.amOnPage("https://npshopping.com");
-    I.click("//div[@class='menu-link__text' and text() = 'Магазини']");
-}).tag("pipelinetest");
