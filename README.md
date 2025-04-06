@@ -15,6 +15,10 @@ This project uses [CodeceptJS](https://codecept.io/) with [Playwright](https://p
 
 ```bash
 npm install
+```
+
+## 🚀 Usage
+```bash
 # Run all tests
 npx codeceptjs run
 
@@ -25,13 +29,17 @@ npx codeceptjs run --steps
 HEADLESS=true npx codeceptjs run --steps
 
 # Run tests with a specific tag
-npx codeceptjs run --grep @jellyfin_api_count_movies
+npx codeceptjs run --grep @getTemperature
 
-# Run a specific test file
+# Rebuild type definitions
 npx codeceptjs run def
 
 # Run tests and generate a mochawesome report
 npx codeceptjs run --reporter mochawesome
+```
+
+## 🚀 Git
+```bash
 # Create a new branch
 git checkout -b exampleBranch      
 
@@ -46,3 +54,4 @@ git commit -m "added features"
 
 # Push to remote
 git push origin exampleBranch    
+```
