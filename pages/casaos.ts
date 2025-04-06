@@ -30,7 +30,7 @@ class casaosPage {
     I.click(this.storageWidgetSettings);
     I.waitForElement(this.storageText, 5);
     let values = await I.grabTextFromAll(this.storageText);
-    console.log(values);
+    console.log(`Storage:\n${values.join('\n')}\n`);
     const content = `\nStorage:\n${values.join('\n')}\n`;
     fs.appendFileSync('output/casaosResult.txt', content, 'utf8');
   }
