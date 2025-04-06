@@ -23,7 +23,7 @@ class qbittorrentPage {
     const stateValues = await I.grabTextFromAll(this.qState);
   
     const result = [];
-    result.push("File Name - Progress");
+    result.push("File Name - Progress - Steps");
   
     for (let i = 0; i < fileNames.length; i++) {
       result.push(`${fileNames[i]} - ${progressValues[i]}% - ${stateValues[i]}`);

@@ -30,23 +30,27 @@ export const config: CodeceptJS.MainConfig = {
       }
     }
   },
-  mocha: {
-    reporter: 'mochawesome',
-    reporterOptions: {
-      reportDir: 'output',
-      reportFilename: 'mochawesome-report',
-      reportTitle: 'CodeceptJS Test Report',
-      inlineAssets: true,
-      quiet: false, // Ensure logs are captured
-      consoleReporter: 'none' // Try removing or setting to 'spec' for more logs
-    }
-  },
+  // mocha: {
+  //   reporter: 'mochawesome',
+  //   reporterOptions: {
+  //     reportDir: 'output',
+  //     reportFilename: 'mochawesome-report',
+  //     reportTitle: 'CodeceptJS Test Report',
+  //     inlineAssets: true,
+  //     quiet: false,
+  //     consoleReporter: 'none'
+  //   }
+  // },
   include: {
     I: './steps_file',
     casaosPage: "./pages/casaos.ts",
     jellyfinPage: "./pages/jellyfin.ts",
-
     qbittorrentPage: "./pages/qbittorrent.ts",
   },
+  plugins: {
+    stepByStepReport: {
+      enabled: true
+    }
+  },
   name: 'autoN100'
-}
+};

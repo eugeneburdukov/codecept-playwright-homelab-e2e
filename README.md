@@ -5,21 +5,25 @@ This project uses [CodeceptJS](https://codecept.io/) with [Playwright](https://p
 ## 📦 Prerequisites
 
 - Node.js (v16+ recommended)
-- npm or yarn
+- npm
 
 ## 🚀 Installation
 
 ```bash
 npm install
-# or
-yarn install
-
 
 ## 🚀 Usage
-npx codeceptjs run --steps 
-npx codeceptjs run def
+npx codeceptjs run
+npx codeceptjs run --steps
+HEADLESS=true npx codeceptjs run --steps
 npx codeceptjs run --grep @jellyfin_api_count_movies
-npm install codeceptjs-mochawesome --save-dev
+
+npx codeceptjs run def
 npx codeceptjs run --reporter mochawesome
-npx codeceptjs run --reporter mochawesome | tee output/test-log.txt
-HEADLESS=true npx codeceptjs run
+
+## 🚀 Git
+git checkout -b exampleBranch      
+git add .   
+git status        
+git commit -m "added features"
+git push origin exampleBranch    
