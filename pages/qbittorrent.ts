@@ -6,7 +6,8 @@ class qbittorrentPage {
   passwordField = "//input[@id='password']";
   loginButton = "//button[@class='v-btn v-btn--block v-btn--elevated v-btn--slim v-theme--light-legacy bg-accent v-btn--density-default v-btn--size-default v-btn--variant-elevated']";
   qElements = "//div[@class='v-card-title text-wrap pt-1 pb-0 px-2 text-truncate']";
-  qElementz = "//div[@class='v-card-title text-wrap pt-1 pb-0 px-2 text-truncate']";
+  qProgress = "//div[@class='v-progress-linear v-progress-linear--active v-progress-linear--rounded rounded-sm v-theme--light-legacy v-locale--is-ltr']";
+  qState = "//span[contains(@class, 'v-chip') and contains(@class, 'bg-torrent-')]//div[@class='v-chip__content']";
 
   login(username, password) {
     I.fillField(this.userNameField, username);
@@ -16,11 +17,23 @@ class qbittorrentPage {
 
   async getQElements() {
     I.waitForElement(this.qElements, 5);
-    let values = await I.grabTextFromAll(this.qElements);
-    console.log(`Files in qbittorrent: \n${values.join('\n')}`);
-    const content = `Files in qbittorrent: \n${values.join('\n')}\n`;
-    fs.writeFileSync('output/result.txt', content, 'utf8');
-  }
+    
+    const fileNames = await I.grabTextFromAll(this.qElements);
+    const progressValues = await I.grabAttributeFromAll(this.qProgress, 'aria-valuenow');
+    const stateValues = await I.grabTextFromAll(this.qState);
+  
+    const result = [];
+    result.push("File Name - Progress");
+  
+    for (let i = 0; i < fileNames.length; i++) {
+      result.push(`${fileNames[i]} - ${progressValues[i]}% - ${stateValues[i]}`);
+    }
+  
+    console.log(result.join('\n'));
+  
+    const content = result.join('\n') + '\n';
+    fs.writeFileSync('output/Qresult.txt', content, 'utf8');
+  }  
 
 
 }
