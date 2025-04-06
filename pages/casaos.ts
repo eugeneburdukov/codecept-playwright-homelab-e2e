@@ -10,7 +10,7 @@ class casaosPage {
   storageText = "//p[@class='has-text-left has-text-full-04 mt-1']";
   jellyfinContainer = '//div[@id=\'app-jellyfin\']';
   qbittorentContainer = '//div[@id=\'app-qbittorrent\']';
-  tempreture = "//div[@class='v-card-title text-wrap pt-1 pb-0 px-2 text-truncate']/text()";
+  tempreture = "//div[contains(@class, 'widget') and contains(@class, 'cpu')]//div[contains(@class, 'bar-content') and contains(@class, 'is-clickable')]";
 
   login(username, password) {
     I.fillField(this.usernameField, username);
@@ -19,11 +19,11 @@ class casaosPage {
   }
 
   async getTemperature() {
-    I.waitForElement(this.tempreture, 5);
+    I.waitForElement(this.tempreture, 50);
     let values = await I.grabTextFrom(this.tempreture);
     console.log(`Temperature is ${values}`);
     const content = `Temperatures: ${values}\n`;
-    fs.writeFileSync('output/result.txt', content, 'utf8');
+    fs.writeFileSync('output/casaosResult.txt', content, 'utf8');
   }
 
   async getStorageInfo() {
@@ -32,7 +32,7 @@ class casaosPage {
     let values = await I.grabTextFromAll(this.storageText);
     console.log(values);
     const content = `\nStorage:\n${values.join('\n')}\n`;
-    fs.appendFileSync('output/result.txt', content, 'utf8');
+    fs.appendFileSync('output/casaosResult.txt', content, 'utf8');
   }
 
   goToJellyfinContainer() {

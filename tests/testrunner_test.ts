@@ -7,18 +7,18 @@ Feature('main');
 
 Before(({ I, casaosPage }) => {
     console.log("🚀 Running");
-        I.amOnPage(environment.LAN.casaOSpage);
-        casaosPage.login(environment.CREDENTIALS.username, environment.CREDENTIALS.password); 
+    I.amOnPage(environment.LAN.casaOSpage);
+    casaosPage.login(environment.CREDENTIALS.username, environment.CREDENTIALS.password);
 });
 
-Scenario('get Downloading list', async  ({ I, casaosPage, qbittorrentPage }) => {
+Scenario('get Downloading list', async ({ I, casaosPage, qbittorrentPage }) => {
     casaosPage.goToQbittorrentContainer();
     qbittorrentPage.login(environment.CREDENTIALS.username, environment.CREDENTIALS.password);
     await qbittorrentPage.getQElements();
 }).tag('qbittorrent');
 
-Scenario('get Temperature Info', ({ I, casaosPage }) => {
-    casaosPage.getTemperature();
+Scenario('get Temperature Info', async ({ I, casaosPage }) => {
+    await casaosPage.getTemperature();
 }).tag('getTemperature');
 
 Scenario('get Storage Info', ({ I, casaosPage }) => {
