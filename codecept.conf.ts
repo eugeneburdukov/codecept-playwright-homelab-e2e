@@ -19,7 +19,7 @@ export const config: CodeceptJS.MainConfig = {
       show: true,
       timeout: 20000,
       waitForTimeout: 20000,
-      windowSize: '1280x720',
+      windowSize: '1920x1080',
       waitForNavigation: 'load'
     },
     REST: {

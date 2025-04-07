@@ -40,8 +40,8 @@ class jellyfinPage {
     I.click(this.librariesSection);
     I.click(this.librariesSectionDescendent);
     I.click(this.showsLibrarySection);
-    // I.click(this.LibraryScan);
-    // I.click(this.refreshButton);
+    I.click(this.LibraryScan);
+    I.click(this.refreshButton);
   }
 
   async getCountOfMovies() {
