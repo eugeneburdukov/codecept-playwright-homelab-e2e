@@ -1,0 +1,39 @@
+pipeline {
+    agent any
+
+    environment {
+        NODEJS_HOME = tool 'nodejs'
+        PATH = "${NODEJS_HOME}/bin:${PATH}"
+        DONT_FAIL_ON_EMPTY_RUN = 'true' // avoids failure if no tests run
+    }
+
+    stages {
+        stage('Checkout') {
+            steps {
+                git branch: 'main',
+                    url: 'https://github.com/eugeneburdukov/casaost1'
+            }
+        }
+
+        stage('Install Dependencies') {
+            steps {
+                sh 'npm install'
+                sh 'npx playwright install --with-deps' // installs both browser binaries and required system deps
+            }
+        }
+
+        stage('Run Tests') {
+            steps {
+                // Force headless mode in CI by setting HEADLESS=true
+                sh 'HEADLESS=true npx codeceptjs run || echo "Tests failed (expected or not), continuing to reporting..."'
+            }
+        }
+    }
+
+    post {
+        always {
+            archiveArtifacts artifacts: 'output/**', fingerprint: true
+            junit allowEmptyResults: true, testResults: 'output/*.xml'
+        }
+    }
+}
