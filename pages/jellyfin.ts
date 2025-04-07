@@ -37,10 +37,15 @@ class jellyfinPage {
   }
 
   refreshSeriesLibrary() {
+    I.waitForElement(this.librariesSection);
     I.click(this.librariesSection);
+    I.waitForElement(this.librariesSectionDescendent);
     I.click(this.librariesSectionDescendent);
+    I.waitForElement(this.showsLibrarySection);
     I.click(this.showsLibrarySection);
+    I.waitForElement(this.LibraryScan);
     I.click(this.LibraryScan);
+    I.waitForElement(this.refreshButton);
     I.click(this.refreshButton);
   }
 
