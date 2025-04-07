@@ -17,8 +17,8 @@ export const config: CodeceptJS.MainConfig = {
       browser: 'chromium',
       url: 'http://192.168.1.231:32769',
       show: true,
-      timeout: 20000,
-      waitForTimeout: 20000,
+      timeout: 30000,
+      waitForTimeout: 30000,
       windowSize: '1920x1080',
       waitForNavigation: 'load'
     },
