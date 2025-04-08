@@ -14,7 +14,7 @@ export const config: CodeceptJS.MainConfig = {
   output: './output',
   helpers: {
     Playwright: {
-      browser: 'chromium',
+      browser: 'firefox',
       url: 'http://192.168.1.231:32769',
       show: true,
       timeout: 60000,
