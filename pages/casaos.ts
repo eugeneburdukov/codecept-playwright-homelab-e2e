@@ -25,7 +25,7 @@ class casaosPage {
     let cpu = `CPU: ${values[0]}%`;
     let ram = `RAM: ${values[1]}%`;
     console.log(cpu + " " + ram);
-    const content = cpu + " " + ram;
+    const content = cpu + ", " + ram;
     fs.writeFileSync('output/casaosResult.txt', content, 'utf8');
   }
 
