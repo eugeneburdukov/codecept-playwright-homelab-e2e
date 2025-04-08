@@ -17,6 +17,10 @@ Scenario('get Downloading list', async ({ I, casaosPage, qbittorrentPage }) => {
     await qbittorrentPage.getQElements();
 }).tag('qbittorrent');
 
+Scenario('get CPU and RAM Info', async ({ I, casaosPage }) => {
+    await casaosPage.getPcInfo();
+}).tag('getPcInfo');
+
 Scenario('get Temperature Info', async ({ I, casaosPage }) => {
     await casaosPage.getTemperature();
 }).tag('getTemperature');
