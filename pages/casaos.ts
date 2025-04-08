@@ -1,5 +1,5 @@
 const { I } = inject();
-const addContext = require('mochawesome/addContext'); 
+const addContext = require('mochawesome/addContext');
 const fs = require('fs');
 
 class casaosPage {
@@ -11,6 +11,7 @@ class casaosPage {
   jellyfinContainer = '//div[@id=\'app-jellyfin\']';
   qbittorentContainer = '//div[@id=\'app-qbittorrent\']';
   tempreture = "//div[contains(@class, 'widget') and contains(@class, 'cpu')]//div[contains(@class, 'bar-content') and contains(@class, 'is-clickable')]";
+  cpuAndRam = "//div[@class='per']";
 
   login(username, password) {
     I.fillField(this.usernameField, username);
@@ -18,12 +19,22 @@ class casaosPage {
     I.click(this.loginButton);
   }
 
+  async getPcInfo() {
+    I.waitForElement(this.cpuAndRam, 50);
+    let values = await I.grabTextFromAll(this.cpuAndRam);
+    let cpu = `CPU: ${values[0]}%`;
+    let ram = `RAM: ${values[1]}%`;
+    console.log(cpu + " " + ram);
+    const content = cpu + " " + ram;
+    fs.writeFileSync('output/casaosResult.txt', content, 'utf8');
+  }
+
   async getTemperature() {
     I.waitForElement(this.tempreture, 50);
     let values = await I.grabTextFrom(this.tempreture);
     console.log(`Temperature is ${values}`);
-    const content = `Temperatures: ${values}\n`;
-    fs.writeFileSync('output/casaosResult.txt', content, 'utf8');
+    const content = `\nCPU Temperature: ${values}\n`;
+    fs.appendFileSync('output/casaosResult.txt', content, 'utf8');
   }
 
   async getStorageInfo() {
