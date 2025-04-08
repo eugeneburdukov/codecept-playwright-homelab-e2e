@@ -31,7 +31,6 @@ Scenario('Refresh Movie Library', ({ I, casaosPage, jellyfinPage }) => {
     jellyfinPage.login(environment.CREDENTIALS.username, environment.CREDENTIALS.password);
     jellyfinPage.goToDashboard();
     jellyfinPage.refreshMoviesLibrary();
-    console.log("Jellyfin Movies is refreshed");
 }).tag('JupdateMovieLibrary');
 
 Scenario('Refresh Series Library', ({ I, casaosPage, jellyfinPage }) => {
@@ -40,7 +39,6 @@ Scenario('Refresh Series Library', ({ I, casaosPage, jellyfinPage }) => {
     jellyfinPage.login(environment.CREDENTIALS.username, environment.CREDENTIALS.password);
     jellyfinPage.goToDashboard();
     jellyfinPage.refreshSeriesLibrary();
-    console.log("Jellyfin Series is refreshed");
 }).tag('JupdateSeriesLibrary');
 
 
