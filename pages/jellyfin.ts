@@ -24,7 +24,9 @@ class jellyfinPage {
   }
 
   goToDashboard() {
+    I.waitForElement(this.hamburgerMenu);
     I.click(this.hamburgerMenu);
+    I.waitForElement(this.dashboardSection);
     I.click(this.dashboardSection);
   }
 
