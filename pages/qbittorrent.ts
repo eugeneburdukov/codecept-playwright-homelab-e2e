@@ -32,7 +32,7 @@ class qbittorrentPage {
     console.log(result.join('\n'));
   
     const content = result.join('\n') + '\n';
-    fs.writeFileSync('output/Qresult.txt', content, 'utf8');
+    fs.writeFileSync('output/qbittorrentResult.txt', content, 'utf8');
   }  
 
 
