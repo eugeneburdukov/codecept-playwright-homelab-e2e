@@ -18,13 +18,12 @@ pipeline {
         stage('Install Dependencies') {
             steps {
                 sh 'npm install'
-                sh 'npx playwright install --with-deps' // installs both browser binaries and required system deps
+                sh 'npx playwright install --with-deps'
             }
         }
 
         stage('Run Tests') {
             steps {
-                // Force headless mode in CI by setting HEADLESS=true
                 sh 'HEADLESS=true npx codeceptjs run || echo "Tests failed (expected or not), continuing to reporting..."'
             }
         }
@@ -34,6 +33,10 @@ pipeline {
         always {
             archiveArtifacts artifacts: 'output/**', fingerprint: true
             junit allowEmptyResults: true, testResults: 'output/*.xml'
+
+            // 🔻 CLEANUP: remove output folder after archiving
+            echo 'Cleaning up output artifacts...'
+            sh 'rm -rf output || true'
         }
     }
 }
