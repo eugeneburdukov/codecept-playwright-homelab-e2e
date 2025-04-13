@@ -16,6 +16,14 @@ class qbittorrentPage {
   }
 
   async getQElements() {
+    const count = await I.grabNumberOfVisibleElements(this.qElements);
+
+    if (count === 0) {
+      console.log('No Downloads at this moment, skipping test...');
+      fs.writeFileSync('output/qbittorrentResult.txt', 'No Downloads at this moment\n', 'utf8');
+      return;
+    }
+
     I.waitForElement(this.qElements, 5);
     
     const fileNames = await I.grabTextFromAll(this.qElements);

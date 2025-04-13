@@ -3,11 +3,12 @@ import { environment } from "../config/basicConfig";
 import { AssertionError } from "assert";
 //const addContext = require('mochawesome/addContext');
 
-Feature('main');
+Feature('HomeLab report');
 
 Before(({ I, casaosPage }) => {
     console.log("🚀 Running");
     I.amOnPage(environment.LAN.casaOSpage);
+    I.waitForElement('body', 10); 
     casaosPage.login(environment.CREDENTIALS.username, environment.CREDENTIALS.password);
 });
 
@@ -16,6 +17,11 @@ Scenario('get Downloading list', async ({ I, casaosPage, qbittorrentPage }) => {
     qbittorrentPage.login(environment.CREDENTIALS.username, environment.CREDENTIALS.password);
     await qbittorrentPage.getQElements();
 }).tag('qbittorrent');
+
+Scenario('get Disk health report', async ({ I, casaosPage, scrutinyPage }) => {
+    await casaosPage.goToScrutinyContainer();
+    await scrutinyPage.getDiskHealthInfo();
+}).tag('getDiskHealth');
 
 Scenario('get CPU and RAM Info', async ({ I, casaosPage }) => {
     await casaosPage.getPcInfo();
