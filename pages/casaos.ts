@@ -10,6 +10,7 @@ class casaosPage {
   storageText = "//p[@class='has-text-left has-text-full-04 mt-1']";
   jellyfinContainer = '//div[@id=\'app-jellyfin\']';
   qbittorentContainer = '//div[@id=\'app-qbittorrent\']';
+  scrutinyContainer = '//div[@id=\'app-big-bear-scrutiny\']';
   tempreture = "//div[contains(@class, 'widget') and contains(@class, 'cpu')]//div[contains(@class, 'bar-content') and contains(@class, 'is-clickable')]";
   cpuAndRam = "//div[@class='per']";
 
@@ -24,7 +25,7 @@ class casaosPage {
     let values = await I.grabTextFromAll(this.cpuAndRam);
     let cpu = `CPU: ${values[0]}%`;
     let ram = `RAM: ${values[1]}%`;
-    console.log(cpu + " " + ram);
+    console.log(cpu + ", " + ram);
     const content = cpu + ", " + ram;
     fs.writeFileSync('output/casaosResult.txt', content, 'utf8');
   }
@@ -60,6 +61,14 @@ class casaosPage {
     I.switchToNextTab();
     I.seeInTitle('VueTorrent');
   }
+
+  goToScrutinyContainer() {
+    I.waitForElement(this.scrutinyContainer, 10);
+    I.click(this.scrutinyContainer);
+    I.switchToNextTab();
+    I.seeInTitle('scrutiny');
+  }
+  
 }
 
 // For inheritance

@@ -14,12 +14,12 @@ export const config: CodeceptJS.MainConfig = {
   output: './output',
   helpers: {
     Playwright: {
-      browser: 'firefox',
+      browser: 'chromium',
       url: 'http://192.168.1.231:32769',
       show: true,
       timeout: 60000,
       waitForTimeout: 60000,
-      windowSize: '1920x1080',
+      windowSize: '1280x720',
       waitForNavigation: 'load'
     },
     REST: {
@@ -46,10 +46,12 @@ export const config: CodeceptJS.MainConfig = {
     casaosPage: "./pages/casaos.ts",
     jellyfinPage: "./pages/jellyfin.ts",
     qbittorrentPage: "./pages/qbittorrent.ts",
+
+    scrutinyPage: "./pages/ scrutiny.ts",
   },
   plugins: {
     stepByStepReport: {
-      enabled: true
+      enabled: false
     }
   },
   name: 'autoN100'
