@@ -11,7 +11,7 @@ pipeline {
         stage('Checkout') {
             steps {
                 git branch: 'main',
-                    url: 'https://github.com/eugeneburdukov/casaost1'
+                    url: 'https://github.com/eugeneburdukov/codecept-playwright-homelab-e2e'
             }
         }
 
