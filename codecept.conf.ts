@@ -50,6 +50,12 @@ export const config: CodeceptJS.MainConfig = {
     scrutinyPage: "./pages/scrutiny.ts",
   },
   plugins: {
+    tryTo: {
+      enabled: false
+    },
+    retryTo: {
+      enabled: false
+    },
     stepByStepReport: {
       enabled: false
     }
