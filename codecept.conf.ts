@@ -47,7 +47,7 @@ export const config: CodeceptJS.MainConfig = {
     jellyfinPage: "./pages/jellyfin.ts",
     qbittorrentPage: "./pages/qbittorrent.ts",
 
-    scrutinyPage: "./pages/ scrutiny.ts",
+    scrutinyPage: "./pages/scrutiny.ts",
   },
   plugins: {
     stepByStepReport: {
