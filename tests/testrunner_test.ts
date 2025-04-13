@@ -1,14 +1,21 @@
-import { assert } from "console";
 import { environment } from "../config/basicConfig";
 import { AssertionError } from "assert";
+import assert from 'assert';
 //const addContext = require('mochawesome/addContext');
 
 Feature('HomeLab report');
 
 Before(({ I, casaosPage }) => {
-    console.log("🚀 Running");
+    console.log("🚀 Running a new test");
     I.amOnPage(environment.LAN.casaOSpage);
-    I.waitForElement('body', 10); 
+
+    try {
+        I.waitForElement('body', 10);
+    } catch (err) {
+        console.error('❌ Page did not load properly: <body> not found');
+        assert.fail('Critical: <body> element not found — aborting tests');
+    }
+
     casaosPage.login(environment.CREDENTIALS.username, environment.CREDENTIALS.password);
 });
 
