@@ -16,6 +16,8 @@ class qbittorrentPage {
   }
 
   async getQElements() {
+
+    await I.wait(2); // give time for dynamic content to load
     const count = await I.grabNumberOfVisibleElements(this.qElements);
 
     if (count === 0) {
@@ -25,23 +27,23 @@ class qbittorrentPage {
     }
 
     I.waitForElement(this.qElements, 5);
-    
+
     const fileNames = await I.grabTextFromAll(this.qElements);
     const progressValues = await I.grabAttributeFromAll(this.qProgress, 'aria-valuenow');
     const stateValues = await I.grabTextFromAll(this.qState);
-  
+
     const result = [];
     result.push("File Name - Progress - State");
-  
+
     for (let i = 0; i < fileNames.length; i++) {
       result.push(`${fileNames[i]} - ${progressValues[i]}% - ${stateValues[i]}`);
     }
-  
+
     console.log(result.join('\n'));
-  
+
     const content = result.join('\n') + '\n';
     fs.writeFileSync('output/qbittorrentResult.txt', content, 'utf8');
-  }  
+  }
 
 
 }
