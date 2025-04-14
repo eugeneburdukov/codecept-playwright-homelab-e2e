@@ -1,10 +1,12 @@
 export const environment = {
     LAN: {
-        casaOSpage: "http://192.168.1.231"
+        casaOSpage: "http://192.168.1.231",
+        kvmpage: "http://192.168.1.62"
     },
     CREDENTIALS: {
         username: "eugeneb",
-        password: "drandulet"
+        password: "drandulet",
+        kvmpassword: "perturbator1234"
     },
     JELLYFIN: {
         API_URL: "http://192.168.1.231:8097",

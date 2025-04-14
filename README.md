@@ -2,12 +2,15 @@
 
 This project uses [CodeceptJS](https://codecept.io/) with [Playwright](https://playwright.dev/) for automated end-to-end testing of a local HomeLab on Ubuntu, running [CasaOS](https://www.casaos.io/) as the container management interface. [Jellyfin](https://jellyfin.org/), [qBittorrent](https://www.qbittorrent.org/), and [Scrutiny](https://github.com/AnalogJ/scrutiny) run as Docker containers orchestrated via CasaOS. A sample [Jenkins](https://www.jenkins.io/) pipeline configuration is also included for continuous test execution and artifact reporting.
 
+[Watch more about the Homelab on my YouTube channel](https://youtu.be/M56FPEAKSi0)
+
 ---
 
 ## 🧪 Tested Scenarios
 
 ### 🔍 UI Scenarios
 
+- ✅ Get KVM over IP info
 - ✅ Get downloading list in **qBittorrent**
 - ✅ Get disk health report using **Scrutiny**
 - ✅ Get CPU and RAM usage in **CasaOS**
@@ -82,7 +85,17 @@ git commit -m "added features"
 git push origin exampleBranch    
 ```
 
-## 🚀 Output example:
+## 📸 Screenshots
+
+You can find screenshots of the test results in the repository folder:  
+`codecept-playwright-homelab-e2e/githubScreenshots/`
+
+Here is a preview:
+
+![Test Screenshot](githubScreenshots/jenkinsbuild1.png)
+![Test Screenshot](githubScreenshots/jenkinsbuild2.png)
+
+## 🚀 Sample output:
 ```bash
 
 + HEADLESS=true npx codeceptjs run
