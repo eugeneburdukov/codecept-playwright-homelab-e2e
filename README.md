@@ -82,6 +82,16 @@ git commit -m "added features"
 git push origin exampleBranch    
 ```
 
+## 📸 Screenshots
+
+You can find screenshots of the test results in the repository folder:  
+`codecept-playwright-homelab-e2e/githubScreenshots/`
+
+Here is a preview of one of the screenshots:
+
+![Test Screenshot](codecept-playwright-homelab-e2e/githubScreenshots/jenkinsbuild1.png)
+![Test Screenshot](codecept-playwright-homelab-e2e/githubScreenshots/jenkinsbuild2.png)
+
 ## 🚀 Output example:
 ```bash
 
