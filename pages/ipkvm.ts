@@ -27,9 +27,9 @@ class ipkvmPage {
     I.wait(5);
     const isOn = await I.grabAttributeFrom(this.tailscaleStatusButton, 'class');
     const ip = await I.grabTextFrom(this.tailscaleip);
-    const deviceName = await I.grabTextFrom(this.tailscaleip);
+    const deviceName = await I.grabTextFrom(this.tailscaleDeviceName);
     console.log(`[DEBUG] Switch class = ${isOn}`);
-    console.log(`Tailscale IP = ${ip}, Tailscale Device name = ${deviceName}`);
+    console.log(`Tailscale IP = ${ip}, Tailscale Device name = '${deviceName}'`);
     I.saveScreenshot("tailscaleStatus.png", true);
 
     // assert.ok(isOn.includes('ant-switch-checked'), 'Tailscale is ON');
