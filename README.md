@@ -87,10 +87,10 @@ git push origin exampleBranch
 You can find screenshots of the test results in the repository folder:  
 `codecept-playwright-homelab-e2e/githubScreenshots/`
 
-Here is a preview of one of the screenshots:
+Here is a preview:
 
-![Test Screenshot](codecept-playwright-homelab-e2e/githubScreenshots/jenkinsbuild1.png)
-![Test Screenshot](codecept-playwright-homelab-e2e/githubScreenshots/jenkinsbuild2.png)
+![Test Screenshot](githubScreenshots/jenkinsbuild1.png)
+![Test Screenshot](githubScreenshots/jenkinsbuild2.png)
 
 ## 🚀 Output example:
 ```bash
