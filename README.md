@@ -10,6 +10,7 @@ This project uses [CodeceptJS](https://codecept.io/) with [Playwright](https://p
 
 ### 🔍 UI Scenarios
 
+- ✅ Get KVM over IP info
 - ✅ Get downloading list in **qBittorrent**
 - ✅ Get disk health report using **Scrutiny**
 - ✅ Get CPU and RAM usage in **CasaOS**
@@ -94,7 +95,8 @@ Here is a preview:
 ![Test Screenshot](githubScreenshots/jenkinsbuild1.png)
 ![Test Screenshot](githubScreenshots/jenkinsbuild2.png)
 
-## 🚀 Output example:
+
+## 🚀 Sample output:
 ```bash
 
 + HEADLESS=true npx codeceptjs run

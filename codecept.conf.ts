@@ -48,6 +48,8 @@ export const config: CodeceptJS.MainConfig = {
     qbittorrentPage: "./pages/qbittorrent.ts",
 
     scrutinyPage: "./pages/scrutiny.ts",
+
+    ipkvmPage: "./pages/ipkvm.ts",
   },
   plugins: {
     tryTo: {
