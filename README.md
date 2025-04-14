@@ -59,6 +59,13 @@ npx codeceptjs run --reporter mochawesome
 
 ## 🚀 Git
 ```bash
+
+# List all the remote repositories associated with your local Git repository
+git remote -v
+
+# Update the URL of the remote repository named origin
+git remote set-url origin https://github.com/eugeneburdukov/codeceptjs-playwright-homelab.git
+
 # Create a new branch
 git checkout -b exampleBranch      
 
