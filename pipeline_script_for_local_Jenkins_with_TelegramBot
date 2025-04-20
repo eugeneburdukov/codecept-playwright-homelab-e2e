@@ -1,3 +1,16 @@
+echo 'Sending .txt files to Telegram...'
+sh '''
+for file in output/*.txt; do
+  [ -e "$file" ] || continue
+  curl -s -X POST https://api.telegram.org/bot$yourTelegramtoken/sendDocument \
+    -F chat_id=$yourChatId \
+    -F document=@"$file"
+done
+'''
+
+                '''
+
+
 pipeline {
     agent any
 
@@ -46,8 +59,8 @@ pipeline {
 """
 
                 sh """
-                curl -s -X POST https://api.telegram.org/bot7831202887:AAEUqHmqtNFMUe0KuO5nX63QYFjgXXzaX_Y/sendMessage \\
-                -d chat_id=500732916 \\
+                curl -s -X POST https://api.telegram.org/bot$yourTelegramtoken/sendMessage \\
+                -d chat_id=$yourChatId \\
                 -d parse_mode=Markdown \\
                 --data-urlencode text="${message}"
                 """
@@ -57,8 +70,8 @@ pipeline {
             sh '''
             for file in output/*.png; do
               [ -e "$file" ] || continue
-              curl -s -X POST https://api.telegram.org/bot7831202887:AAEUqHmqtNFMUe0KuO5nX63QYFjgXXzaX_Y/sendPhoto \
-                -F chat_id=500732916 \
+              curl -s -X POST https://api.telegram.org/bot$yourTelegramtoken/sendPhoto \
+                -F chat_id=$yourChatId \
                 -F photo=@"$file"
             done
             '''
@@ -66,8 +79,8 @@ pipeline {
             sh '''
             for file in output/*.txt; do
               [ -e "$file" ] || continue
-              curl -s -X POST https://api.telegram.org/bot7831202887:AAEUqHmqtNFMUe0KuO5nX63QYFjgXXzaX_Y/sendDocument \
-                -F chat_id=500732916 \
+              curl -s -X POST https://api.telegram.org/bot$yourTelegramtoken/sendDocument \
+                -F chat_id=$yourChatId \
                 -F document=@"$file"
             done
             '''
@@ -84,8 +97,8 @@ pipeline {
 """
 
                 sh """
-                curl -s -X POST https://api.telegram.org/bot7831202887:AAEUqHmqtNFMUe0KuO5nX63QYFjgXXzaX_Y/sendMessage \\
-                -d chat_id=500732916 \\
+                curl -s -X POST https://api.telegram.org/bot$yourTelegramtoken/sendMessage \\
+                -d chat_id=$yourChatId \\
                 -d parse_mode=Markdown \\
                 --data-urlencode text="${message}"
                 """
@@ -95,8 +108,8 @@ pipeline {
             sh '''
             for file in output/*.png; do
               [ -e "$file" ] || continue
-              curl -s -X POST https://api.telegram.org/bot7831202887:AAEUqHmqtNFMUe0KuO5nX63QYFjgXXzaX_Y/sendPhoto \
-                -F chat_id=500732916 \
+              curl -s -X POST https://api.telegram.org/bot$yourTelegramtoken/sendPhoto \
+                -F chat_id=$yourChatId \
                 -F photo=@"$file"
             done
             '''
@@ -104,8 +117,8 @@ pipeline {
             sh '''
             for file in output/*.txt; do
               [ -e "$file" ] || continue
-              curl -s -X POST https://api.telegram.org/bot7831202887:AAEUqHmqtNFMUe0KuO5nX63QYFjgXXzaX_Y/sendDocument \
-                -F chat_id=500732916 \
+              curl -s -X POST https://api.telegram.org/bot$yourTelegramtoken/sendDocument \
+                -F chat_id=$yourChatId \
                 -F document=@"$file"
             done
             '''
