@@ -88,6 +88,38 @@ git commit -m "added features"
 git push origin exampleBranch    
 ```
 
+## 🚀 Telegram bot
+
+```bash
+Step 1: Create a Telegram Bot
+
+1. Open Telegram and search for [`@BotFather`](https://t.me/BotFather).
+2. Start a chat and send the command:
+3. Follow the prompts to set a name and username for your bot.
+4. Once created, you'll receive a **Bot Token**. It will look like this: 123456789:ABC-DEF1234ghIkl-zyx57W2v1u123ew11
+
+Save this token securely — you'll need it for sending messages.
+
+Step 2: Get Your Chat ID
+
+1. Start a chat with your newly created bot.
+2. Send any message (e.g., “Hello”).
+3. In your browser, go to: https://api.telegram.org/bot<YourBotToken>/getUpdates
+
+Replace `<YourBotToken>` with the token you got from BotFather.
+4. In the JSON response, look for the `chat` object:
+```json
+{
+  "chat": {
+    "id": 500732916,
+    "first_name": "Eugene",
+    ...
+  }
+}
+
+That id value (e.g., 500732916) is your chat_id.
+```
+
 ## 📸 Screenshots
 
 You can find screenshots of the test results in the repository folder:  
