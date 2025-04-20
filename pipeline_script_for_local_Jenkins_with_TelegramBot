@@ -1,16 +1,3 @@
-echo 'Sending .txt files to Telegram...'
-sh '''
-for file in output/*.txt; do
-  [ -e "$file" ] || continue
-  curl -s -X POST https://api.telegram.org/bot$yourTelegramtoken/sendDocument \
-    -F chat_id=$yourChatId \
-    -F document=@"$file"
-done
-'''
-
-                '''
-
-
 pipeline {
     agent any
 
@@ -60,7 +47,7 @@ pipeline {
 
                 sh """
                 curl -s -X POST https://api.telegram.org/bot$yourTelegramtoken/sendMessage \\
-                -d chat_id=$yourChatId \\
+                -d chat_id=$yourchatid \\
                 -d parse_mode=Markdown \\
                 --data-urlencode text="${message}"
                 """
@@ -71,7 +58,7 @@ pipeline {
             for file in output/*.png; do
               [ -e "$file" ] || continue
               curl -s -X POST https://api.telegram.org/bot$yourTelegramtoken/sendPhoto \
-                -F chat_id=$yourChatId \
+                -F chat_id=$yourchatid \
                 -F photo=@"$file"
             done
             '''
@@ -80,7 +67,7 @@ pipeline {
             for file in output/*.txt; do
               [ -e "$file" ] || continue
               curl -s -X POST https://api.telegram.org/bot$yourTelegramtoken/sendDocument \
-                -F chat_id=$yourChatId \
+                -F chat_id=$yourchatid \
                 -F document=@"$file"
             done
             '''
@@ -98,7 +85,7 @@ pipeline {
 
                 sh """
                 curl -s -X POST https://api.telegram.org/bot$yourTelegramtoken/sendMessage \\
-                -d chat_id=$yourChatId \\
+                -d chat_id=$yourchatid \\
                 -d parse_mode=Markdown \\
                 --data-urlencode text="${message}"
                 """
@@ -109,7 +96,7 @@ pipeline {
             for file in output/*.png; do
               [ -e "$file" ] || continue
               curl -s -X POST https://api.telegram.org/bot$yourTelegramtoken/sendPhoto \
-                -F chat_id=$yourChatId \
+                -F chat_id=$yourchatid \
                 -F photo=@"$file"
             done
             '''
@@ -118,7 +105,7 @@ pipeline {
             for file in output/*.txt; do
               [ -e "$file" ] || continue
               curl -s -X POST https://api.telegram.org/bot$yourTelegramtoken/sendDocument \
-                -F chat_id=$yourChatId \
+                -F chat_id=$yourchatid \
                 -F document=@"$file"
             done
             '''
