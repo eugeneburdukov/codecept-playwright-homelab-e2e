@@ -1,0 +1,119 @@
+pipeline {
+    agent any
+
+    environment {
+        NODEJS_HOME = tool 'nodejs'
+        PATH = "${NODEJS_HOME}/bin:${PATH}"
+        DONT_FAIL_ON_EMPTY_RUN = 'true'
+    }
+
+    stages {
+        stage('Checkout') {
+            steps {
+                git branch: 'main',
+                    url: 'https://github.com/eugeneburdukov/codecept-playwright-homelab-e2e'
+            }
+        }
+
+        stage('Install Dependencies') {
+            steps {
+                sh 'npm install'
+                sh 'npx playwright install --with-deps'
+            }
+        }
+
+        stage('Run Tests') {
+            steps {
+                sh 'HEADLESS=true npx codeceptjs run || echo "Tests failed (expected or not), continuing to reporting..."'
+            }
+        }
+    }
+
+    post {
+        always {
+            archiveArtifacts artifacts: 'output/**', fingerprint: true
+            junit allowEmptyResults: true, testResults: 'output/*.xml'
+        }
+
+        success {
+            script {
+                def duration = currentBuild.durationString.replace(' and counting', '')
+                def buildUrl = "${env.BUILD_URL}"
+                def message = """
+*✅ CodeceptJS Tests Passed!*
+*Job:* [${env.JOB_NAME} #${env.BUILD_NUMBER}](${buildUrl})
+*Duration:* ${duration}
+"""
+
+                sh """
+                curl -s -X POST https://api.telegram.org/bot7831202887:AAEUqHmqtNFMUe0KuO5nX63QYFjgXXzaX_Y/sendMessage \\
+                -d chat_id=500732916 \\
+                -d parse_mode=Markdown \\
+                --data-urlencode text="${message}"
+                """
+            }
+
+            echo 'Sending screenshots on success to Telegram...'
+            sh '''
+            for file in output/*.png; do
+              [ -e "$file" ] || continue
+              curl -s -X POST https://api.telegram.org/bot7831202887:AAEUqHmqtNFMUe0KuO5nX63QYFjgXXzaX_Y/sendPhoto \
+                -F chat_id=500732916 \
+                -F photo=@"$file"
+            done
+            '''
+            echo 'Sending .txt files to Telegram...'
+            sh '''
+            for file in output/*.txt; do
+              [ -e "$file" ] || continue
+              curl -s -X POST https://api.telegram.org/bot7831202887:AAEUqHmqtNFMUe0KuO5nX63QYFjgXXzaX_Y/sendDocument \
+                -F chat_id=500732916 \
+                -F document=@"$file"
+            done
+            '''
+        }
+
+        failure {
+            script {
+                def duration = currentBuild.durationString.replace(' and counting', '')
+                def buildUrl = "${env.BUILD_URL}"
+                def message = """
+*❌ CodeceptJS Tests Failed!*
+*Job:* [${env.JOB_NAME} #${env.BUILD_NUMBER}](${buildUrl})
+*Duration:* ${duration}
+"""
+
+                sh """
+                curl -s -X POST https://api.telegram.org/bot7831202887:AAEUqHmqtNFMUe0KuO5nX63QYFjgXXzaX_Y/sendMessage \\
+                -d chat_id=500732916 \\
+                -d parse_mode=Markdown \\
+                --data-urlencode text="${message}"
+                """
+            }
+
+            echo 'Sending screenshots on failure to Telegram...'
+            sh '''
+            for file in output/*.png; do
+              [ -e "$file" ] || continue
+              curl -s -X POST https://api.telegram.org/bot7831202887:AAEUqHmqtNFMUe0KuO5nX63QYFjgXXzaX_Y/sendPhoto \
+                -F chat_id=500732916 \
+                -F photo=@"$file"
+            done
+            '''
+            echo 'Sending .txt files to Telegram...'
+            sh '''
+            for file in output/*.txt; do
+              [ -e "$file" ] || continue
+              curl -s -X POST https://api.telegram.org/bot7831202887:AAEUqHmqtNFMUe0KuO5nX63QYFjgXXzaX_Y/sendDocument \
+                -F chat_id=500732916 \
+                -F document=@"$file"
+            done
+            '''
+        }
+
+        cleanup {
+            echo 'Cleaning up output folder...'
+            sh 'rm -rf output || true'
+        }
+    }
+}
