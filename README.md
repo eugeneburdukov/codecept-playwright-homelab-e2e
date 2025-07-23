@@ -40,6 +40,7 @@ A sample [Jenkins](https://www.jenkins.io/) pipeline configuration is also inclu
 
 ```bash
 npm install
+npx playwright install
 ```
 
 ## 🚀 Usage
